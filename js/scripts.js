@@ -10,17 +10,29 @@ jQuery(document).ready(function ($) {
     htmlbody = $('html,body');
 
 
-    slide.waypoint(function (event, direction) {
+    // slide.waypoint(function (event, direction) {
+    //
+    //     dataslide = $(this).attr('data-slide');
+    //
+    //     if (direction === 'down') {
+    //         $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').prev().removeClass('active');
+    //     }
+    //     else {
+    //         $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').next().removeClass('active');
+    //     }
+    //
+    // });
 
-        dataslide = $(this).attr('data-slide');
-
-        if (direction === 'down') {
-            $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').prev().removeClass('active');
+    slide.waypoint({
+        handler: function(direction) {
+            var dataslide = this.element.getAttribute('data-slide');
+            if(direction === 'down') {
+                $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').prev().removeClass('active');
+            }
+            else {
+                $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').next().removeClass('active');
+            }
         }
-        else {
-            $('.navigation li[data-slide="' + dataslide + '"]').addClass('active').next().removeClass('active');
-        }
-
     });
  
     mywindow.scroll(function () {
